@@ -1,4 +1,4 @@
-package com.kakapo.message
+package com.kakapo.conversation
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

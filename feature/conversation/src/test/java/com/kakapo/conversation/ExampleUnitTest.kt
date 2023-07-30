@@ -1,4 +1,4 @@
-package com.kakapo.message
+package com.kakapo.conversation
 
 import org.junit.Test
 
