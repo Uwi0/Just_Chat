@@ -49,7 +49,6 @@ internal fun ConversationRoute() {
 @Composable
 internal fun ConversationScreen() {
 
-    val scrollState = rememberLazyListState()
     val topBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topBarState)
 

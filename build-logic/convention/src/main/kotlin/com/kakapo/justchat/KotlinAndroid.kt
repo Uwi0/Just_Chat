@@ -31,6 +31,9 @@ internal fun Project.configureKotlinAndroid(
             targetCompatibility = JavaVersion.VERSION_11
             isCoreLibraryDesugaringEnabled = true
         }
+        buildFeatures {
+            buildConfig = true
+        }
     }
 
     // Use withType to workaround https://youtrack.jetbrains.com/issue/KT-55947
@@ -49,6 +52,7 @@ internal fun Project.configureKotlinAndroid(
                 "-opt-in=kotlinx.coroutines.FlowPreview",
             )
         }
+
     }
 
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")

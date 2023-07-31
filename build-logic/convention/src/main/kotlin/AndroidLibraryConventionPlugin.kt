@@ -27,6 +27,18 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 33
                 configureFlavors(this)
+                buildTypes {
+                    debug {
+                        isMinifyEnabled = false
+                        buildConfigField("Boolean", "DEBUG_MODE", "true")
+                    }
+                    release {
+                        release {
+                            isMinifyEnabled = true
+                            buildConfigField("Boolean", "DEBUG_MODE", "false")
+                        }
+                    }
+                }
                 configureGradleManagedDevices(this)
             }
             extensions.configure<LibraryAndroidComponentsExtension> {

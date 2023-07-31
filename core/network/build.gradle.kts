@@ -29,6 +29,13 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.ktor.cio)
+    implementation(libs.ktor.content.negotiation)
+    implementation(libs.ktor.core)
+    implementation(libs.ktor.logging)
+    implementation(libs.ktor.serialization)
+    implementation(libs.ktor.serializationx)
+    implementation(libs.ktor.webservice)
 
     testImplementation(project(":core:testing"))
 }
