@@ -1,7 +1,7 @@
 package com.kakapo.network.dataSource.impl
 
 import com.kakapo.network.constant.ApiUrl
-import com.kakapo.network.dataSource.base.RemoteChatSocketDataSource
+import com.kakapo.network.dataSource.base.RemoteChatSocketDatasource
 import com.kakapo.network.model.RemoteMessage
 import com.kakapo.network.util.flowNetworkCall
 import com.kakapo.network.util.safeNetworkCall
@@ -21,9 +21,9 @@ import kotlinx.coroutines.isActive
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class RemoteChatSocketDataSourceImpl @Inject constructor(
+class RemoteChatSocketDatasourceImpl @Inject constructor(
     private val client: HttpClient
-) : RemoteChatSocketDataSource {
+) : RemoteChatSocketDatasource {
 
     private var socket: WebSocketSession? = null
     override suspend fun initSession(username: String): Result<Unit> {

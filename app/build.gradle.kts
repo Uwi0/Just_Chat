@@ -69,6 +69,8 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:model"))
     implementation(project(":core:analytics"))
+
+    implementation(project(":feature:auth"))
     implementation(project(":feature:conversation"))
 
     implementation(libs.accompanist.systemuicontroller)

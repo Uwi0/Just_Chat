@@ -3,7 +3,7 @@ package com.kakapo.network.dataSource.base
 import com.kakapo.network.model.RemoteMessage
 import kotlinx.coroutines.flow.Flow
 
-interface RemoteChatSocketDataSource {
+interface RemoteChatSocketDatasource {
 
     suspend fun initSession(username: String): Result<Unit>
 

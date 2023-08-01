@@ -1,4 +1,4 @@
-package com.kakapo.designsystem.component
+package com.kakapo.designsystem.component.userInput
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
