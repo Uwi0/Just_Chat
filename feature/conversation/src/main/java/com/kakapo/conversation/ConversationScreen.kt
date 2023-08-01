@@ -41,6 +41,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -51,12 +52,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.compose.jetchat.FunctionalityNotAvailablePopup
 import com.kakapo.designsystem.component.DynamicAsyncImage
@@ -72,12 +76,26 @@ const val ConversationTestTag = "ConversationTestTag"
 @Composable
 internal fun ConversationRoute(viewModel: ConversationViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    ConversationScreen(uiState)
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(key1 = lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_START) {
+                viewModel.connectToChatSocket()
+            } else if (event == Lifecycle.Event.ON_STOP) {
+                viewModel.disconnectChatSession()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+    ConversationScreen(uiState, viewModel::sendMessage)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ConversationScreen(uiState: ConversationUiState) {
+internal fun ConversationScreen(uiState: ConversationUiState, onMessageSend: (String) -> Unit) {
 
     val scrollState = rememberLazyListState()
     val topBarState = rememberTopAppBarState()
@@ -98,13 +116,14 @@ internal fun ConversationScreen(uiState: ConversationUiState) {
                     .fillMaxSize()
                     .padding(it)
             ) {
-                Messages(modifier = Modifier.weight(1f),
-                    messages = listOf(),
+                Messages(
+                    modifier = Modifier.weight(1f),
+                    messages = uiState.messages,
                     navigateToProfile = {},
                     scrollState = scrollState
                 )
                 UserInput(
-                    onMessageSent = {},
+                    onMessageSent = onMessageSend,
                     modifier = Modifier
                         .navigationBarsPadding()
                         .imePadding()

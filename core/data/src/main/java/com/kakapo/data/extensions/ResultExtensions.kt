@@ -33,3 +33,4 @@ suspend fun <T> proceedResult(func: suspend () -> Result<T>): T {
         throw e
     }
 }
+
