@@ -12,8 +12,14 @@ fun NavController.navigateToLogin(navOptions: NavOptions? = null){
     navigate(LOGIN_ROUTE, navOptions)
 }
 
-fun NavGraphBuilder.loginScreen(navigateToNextDestination: () -> Unit){
-    composable(LOGIN_ROUTE){
-        LoginRoute(navigateToNextDestination = navigateToNextDestination)
+fun NavGraphBuilder.loginScreen(
+    navigateToNextDestination: () -> Unit,
+    navigateToRegisterScreen: () -> Unit
+) {
+    composable(LOGIN_ROUTE) {
+        LoginRoute(
+            navigateToNextDestination = navigateToNextDestination,
+            navigateToRegisterScreen = navigateToRegisterScreen
+        )
     }
 }

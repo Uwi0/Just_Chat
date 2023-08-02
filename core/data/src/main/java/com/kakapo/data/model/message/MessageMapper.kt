@@ -7,7 +7,7 @@ fun toMessage(entity: RemoteMessage): Message {
     return Message(
         id = entity.id,
         content = entity.text,
-        timestamp = "${entity.timeStamp}",
+        timestamp = "${entity.timestamp}",
         username = entity.username,
         imageProfileUrl = ""
     )

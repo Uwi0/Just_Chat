@@ -13,4 +13,7 @@
     <string name="not_available_subtitle">Grab a beverage and check back later!</string>
     <string name="emojis_label">Emojis</string>
     <string name="stickers_label">Stickers</string>
+    <string name="password">password</string>
+    <string name="hide_password">hide password</string>
+    <string name="show_password">show password</string>
 </resources>

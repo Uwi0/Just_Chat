@@ -29,6 +29,10 @@ class LoginViewModel @Inject constructor(
         _uiState.update { it.copy(username = username) }
     }
 
+    fun changedPassword(password: String){
+        _uiState.update { it.copy(password = password) }
+    }
+
     fun saveUsername() {
         viewModelScope.launch {
             authRepository.authenticateUserLogin(uiState.value.username).asResult().suspendSubscribe(
@@ -41,7 +45,8 @@ class LoginViewModel @Inject constructor(
 }
 
 data class LoginUiState(
-    val username: String = ""
+    val username: String = "",
+    val password: String = ""
 )
 
 sealed interface LoginUiEffect{

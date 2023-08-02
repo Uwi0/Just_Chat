@@ -72,6 +72,7 @@ dependencies {
 
     implementation(project(":feature:auth"))
     implementation(project(":feature:conversation"))
+    implementation(project(":feature:home"))
 
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.activity.compose)

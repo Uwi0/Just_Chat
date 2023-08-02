@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 data class RemoteMessage(
     val id: String,
     val text: String,
-    val timeStamp: Long,
+    val timestamp: Long,
     val username: String
 )

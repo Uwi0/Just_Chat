@@ -117,6 +117,7 @@ internal fun ConversationScreen(uiState: ConversationUiState, onMessageSend: (St
                     .padding(it)
             ) {
                 Messages(
+                    authorMe = uiState.username,
                     modifier = Modifier.weight(1f),
                     messages = uiState.messages,
                     navigateToProfile = {},
@@ -187,12 +188,12 @@ fun ChannelNameBar(
 
 @Composable
 private fun Messages(
+    authorMe: String,
     messages: List<Message>,
     navigateToProfile: (String) -> Unit,
     scrollState: LazyListState,
     modifier: Modifier = Modifier
 ) {
-    val authorMe = "uwi0"
     Box(modifier = modifier){
         LazyColumn(
             reverseLayout = true,
