@@ -1,9 +1,9 @@
 package com.kakapo.data.model.message
 
 import com.kakapo.model.chat.Message
-import com.kakapo.network.model.RemoteMessage
+import com.kakapo.network.model.response.ResponseMessage
 
-fun toMessage(entity: RemoteMessage): Message {
+fun toMessage(entity: ResponseMessage): Message {
     return Message(
         id = entity.id,
         content = entity.text,

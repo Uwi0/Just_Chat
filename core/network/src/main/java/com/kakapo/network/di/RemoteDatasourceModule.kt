@@ -1,7 +1,9 @@
 package com.kakapo.network.di
 
+import com.kakapo.network.dataSource.base.RemoteAuthDatasource
 import com.kakapo.network.dataSource.base.RemoteChatSocketDatasource
 import com.kakapo.network.dataSource.base.RemoteMessageDatasource
+import com.kakapo.network.dataSource.impl.RemoteAuthDatasourceImpl
 import com.kakapo.network.dataSource.impl.RemoteChatSocketDatasourceImpl
 import com.kakapo.network.dataSource.impl.RemoteMessageDataSourceImpl
 import dagger.Binds
@@ -22,4 +24,10 @@ interface RemoteDatasourceModule {
     fun bindChatSocketDatasource(
         impl: RemoteChatSocketDatasourceImpl
     ): RemoteChatSocketDatasource
+
+
+    @Binds
+    fun bindAuthDatasource(
+        impl: RemoteAuthDatasourceImpl
+    ): RemoteAuthDatasource
 }

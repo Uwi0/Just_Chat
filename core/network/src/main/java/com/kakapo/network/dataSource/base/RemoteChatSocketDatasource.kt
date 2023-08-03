@@ -1,6 +1,6 @@
 package com.kakapo.network.dataSource.base
 
-import com.kakapo.network.model.RemoteMessage
+import com.kakapo.network.model.response.ResponseMessage
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteChatSocketDatasource {
@@ -9,7 +9,7 @@ interface RemoteChatSocketDatasource {
 
     suspend fun sendMessage(message: String): Result<Unit>
 
-    fun observeIncomingMessage(): Flow<RemoteMessage>
+    fun observeIncomingMessage(): Flow<ResponseMessage>
 
     suspend fun closeSession(): Result<Unit>
 }

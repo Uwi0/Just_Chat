@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -19,15 +20,18 @@ import com.kakapo.designsystem.component.JustChatTextButton
 import com.kakapo.designsystem.component.userInput.DefaultTextField
 import com.kakapo.designsystem.component.userInput.TextInputPassword
 import com.kakapo.ui.component.ButtonLarge
+import com.kakapo.ui.util.showLongToast
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 internal fun RegisterRoute(viewModel: RegisterViewModel = hiltViewModel(), navigateToLogin: () -> Unit) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val context = LocalContext.current
     LaunchedEffect(key1 = Unit){
         viewModel.uiSideEffect.collectLatest {
             when(it){
                 RegisterSideEffect.NavigateToLoginScreen -> navigateToLogin.invoke()
+                is RegisterSideEffect.ShowError -> context.showLongToast(it.message)
             }
         }
     }

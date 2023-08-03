@@ -1,9 +1,9 @@
-package com.kakapo.network.model
+package com.kakapo.network.model.response
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RemoteMessage(
+data class ResponseMessage(
     val id: String,
     val text: String,
     val timestamp: Long,
